@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2013 at 11:38 PM
+-- Generation Time: Oct 08, 2013 at 08:04 PM
 -- Server version: 5.5.25
 -- PHP Version: 5.3.13
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `ci_file` (
   `type` varchar(100) NOT NULL DEFAULT 'unidentified',
   `uploaded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `ci_file`
@@ -42,7 +42,8 @@ CREATE TABLE IF NOT EXISTS `ci_file` (
 
 INSERT INTO `ci_file` (`id`, `path`, `module_id`, `module_name`, `type`, `uploaded`) VALUES
 (20, '/upload/files/santuan.JPG', 7, 'page', 'image', '2013-10-06 17:01:00'),
-(21, '/upload/files/Capture.JPG', 9, 'page', 'image', '2013-10-06 17:03:43');
+(21, '/upload/files/Capture.JPG', 9, 'page', 'image', '2013-10-06 17:03:43'),
+(22, '/upload/files/1385050_528403780575536_1335968142_n.jpg', 13, 'page', 'image', '2013-10-06 20:34:32');
 
 -- --------------------------------------------------------
 
@@ -150,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `g_menu` (
   `url` varchar(250) NOT NULL,
   `top` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `g_menu`
@@ -158,7 +159,9 @@ CREATE TABLE IF NOT EXISTS `g_menu` (
 
 INSERT INTO `g_menu` (`id`, `name`, `icon`, `url`, `top`) VALUES
 (1, 'Settings', 'icon-wrench', 'settings', 0),
-(2, 'Pages', 'icon-file-alt', 'pages', 0);
+(2, 'Pages', 'icon-file-alt', 'pages', 0),
+(3, 'Users', 'icon-user', 'users', 0),
+(4, 'Menu', 'icon-list-alt', 'menu', 0);
 
 -- --------------------------------------------------------
 
@@ -194,14 +197,14 @@ CREATE TABLE IF NOT EXISTS `g_user` (
   `password` varchar(100) NOT NULL,
   `last_login` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `g_user`
 --
 
 INSERT INTO `g_user` (`id`, `login`, `password`, `last_login`) VALUES
-(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', '2013-10-06 22:45:24');
+(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', '2013-10-08 16:57:50');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

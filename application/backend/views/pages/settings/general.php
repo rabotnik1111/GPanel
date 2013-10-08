@@ -1,4 +1,5 @@
 <div class="col-lg-12">
+    <h3>Settings</h3>
     <form action="<?= base_url(); ?>settings/save" method="post">
         <table class="table">
             <tr>
