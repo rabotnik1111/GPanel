@@ -34,7 +34,7 @@ function tree_option($list, $active = 0, $level = 0) {
     
     foreach ($list as $item) {
             $symb = str_repeat('&nbsp;|&nbsp;&nbsp;&nbsp;', $level-1).($level?'&nbsp;|- ':'');
-            $html.= "<option value='{$item['id']}' ". ($active == $item['id'] ? 'selected' : '') .">" . $symb . " " . urldecode($item['langs'][1]['title']) . "</option>";
+            $html.= "<option value='{$item['id']}' ". ($active == $item['id'] ? 'selected' : '') .">" . $symb . " " . urldecode(isset($item['langs'][1]['title'])?$item['langs'][1]['title']:$item['title']) . "</option>";
 
             if ($item['childs'])
                 $html .= tree_option($item['childs'], $active, $level + 1);
