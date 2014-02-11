@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-<!--        GPanel este bazat pe Metis Admin si CodeIgniter -->
+<!--
+    GPanel v0.1
+    CodeIgniter Administrator Panel
+    Repository: https://github.com/ngodina/GPanel
+-->
         <meta charset="UTF-8">
         <title>GPanel - CodeIgniter Administrator Panel</title>
         <link rel="stylesheet" href="<?=base_url();?>assets/lib/bootstrap/css/bootstrap.css">
@@ -20,7 +24,7 @@
 
             <div id="top">
                 <!-- .navbar -->
-                <nav class="navbar navbar-inverse navbar-static-top">
+                <nav class="navbar navbar-inverse navbar-static-top" >
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <header class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -29,7 +33,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a href="<?=base_url();?>" class="navbar-brand"><img src="<?=base_url();?>assets/img/logo.png" alt=""></a>
+                        <a href="<?=base_url();?>settings" class="navbar-brand"><img src="<?=base_url();?>assets/img/logo.png" alt=""></a>
                     </header>
 
 
@@ -112,6 +116,7 @@
 
 
         <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+        <script src="<?=base_url();?>assets/js/ckeditor/ckeditor.js"></script>
         <script src="<?=base_url();?>assets/lib/bootstrap/js/bootstrap.js"></script>
         <script src="<?=base_url();?>assets/lib/switch/static/js/bootstrap-switch.min.js"></script>
         <script src="<?=base_url();?>assets/js/main.js"></script>

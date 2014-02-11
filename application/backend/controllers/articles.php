@@ -41,6 +41,27 @@ class Articles extends MY_Controller {
         $this->template->build('pages/articles/form', $data);
     }
     
+    public function cdelete($id) {
+        $data['article'] = $this->database->get_row('ci_article',array('id'=>$id));
+        $data['article_lang'] = $this->database->get_all('ci_article_lang',array('article_id'=>$id));
+        $data['files'] = $this->database->get_all('ci_file',array('module_id'=>$id,'module_name'=>'article'));
+        
+        $this->template->build('pages/articles/delete', $data);
+    }
+    
+    public function delete($id) {
+        $this->db->delete('ci_article',array('id'=>$id));
+        $this->db->delete('ci_article_lang',array('article_id'=>$id));
+        $files = $this->database->get_all('ci_file',array('module_id'=>$id,'module_name'=>'article'));
+        
+        $this->load->model('file_model');
+        foreach ($files as $itm) {
+            $this->file_model->drop_file($itm['id']);
+        }
+                
+        redirect('articles');
+    }
+
     public function save($id = 0) {
         $data = $this->input->post('lang');
         $ganeral = $this->input->post('general');

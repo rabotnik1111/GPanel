@@ -29,24 +29,22 @@
                                 <tr>
                                     <td style="width:30%;">Category:</td>
                                     <td>
-<!--                                        <select name='general[category_id]' class='form-control'>
-                                            <?php foreach ($categories as $category) { ?>
-                                            <option value="<?=$category['id'];?>" <?= isset($article['category_id']) && $article['category_id'] == $category['id'] ? "selected" : ""; ?>><?=$category['name'];?></option>
-                                            <?php } ?>
-                                        </select>-->
                                         <select name='general[category_id]' class='form-control'>
                                             <?= tree_option($categories, $article['category_id']); ?>
                                         </select>
-                                        
                                     </td>
                                 </tr>
                                 <?php if (isset($article)) { ?>
-                                <tr>
-                                    <td>Date:</td>
-                                    <td>
-                                        <input type='text' name='general[date_created]' class='form-control' value='<?= isset($article['date_created']) ? $article['date_created'] : ""; ?>'/>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>Date:</td>
+                                        <td>
+
+                                            <div class="input-group">
+                                                <input type='text' name='general[date_created]' class='form-control' value='<?= isset($article['date_created']) ? $article['date_created'] : ""; ?>'/>
+                                                <span class="input-group-addon">YYYY-MM-DD HH:MM:SS</span>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 <?php } ?>
                             </table>
                         </div>
@@ -62,7 +60,7 @@
                                     <tr>
                                         <td>Text:</td>
                                         <td>
-                                            <textarea class='form-control' name='lang[<?= $lang['id']; ?>][text]'><?= isset($article['langs'][$lang['id']]['text']) ? $article['langs'][$lang['id']]['text'] : ""; ?></textarea>
+                                            <textarea class='form-control  ckeditor' name='lang[<?= $lang['id']; ?>][text]'><?= isset($article['langs'][$lang['id']]['text']) ? $article['langs'][$lang['id']]['text'] : ""; ?></textarea>
                                         </td>
                                     </tr>
                                     <tr>
@@ -87,7 +85,10 @@
 
 
                     <br>
-                    <input type='submit' class='btn btn-success margin-top pull-right'/>
+                    <input type='submit' class='btn btn-success margin-top pull-right' value="Trimite"/>
+                    <?php if (isset($article)) { ?>
+                        <a href='<?= base_url(); ?>articles/cdelete/<?= $article['id']; ?>' style='margin-right: 10px;' class='btn btn-danger pull-right'>Sterge</a>
+                    <?php } ?>
                     <div class='clearfix'></div>
                 </form>
 

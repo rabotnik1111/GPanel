@@ -45,7 +45,12 @@
 | the active record class
 */
 
-$active_group = 'default';
+if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1") {
+    $active_group = 'default';
+} else {
+    $active_group = 'server';
+}
+
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
@@ -63,6 +68,22 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
+
+$db['server']['hostname'] = 'localhost';
+$db['server']['username'] = 'kopceak1_gpanel';
+$db['server']['password'] = 'gpanel101';
+$db['server']['database'] = 'kopceak1_gpanel';
+$db['server']['dbdriver'] = 'mysql';
+$db['server']['dbprefix'] = '';
+$db['server']['pconnect'] = TRUE;
+$db['server']['db_debug'] = TRUE;
+$db['server']['cache_on'] = FALSE;
+$db['server']['cachedir'] = '';
+$db['server']['char_set'] = 'utf8';
+$db['server']['dbcollat'] = 'utf8_general_ci';
+$db['server']['swap_pre'] = '';
+$db['server']['autoinit'] = TRUE;
+$db['server']['stricton'] = FALSE;
 
 
 /* End of file database.php */

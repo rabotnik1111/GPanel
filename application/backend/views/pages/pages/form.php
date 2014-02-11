@@ -46,7 +46,7 @@
                     <tr>
                         <td>Text:</td>
                         <td>
-                            <textarea class='form-control' name='lang[<?= $lang['id']; ?>][text]'><?= $page['langs'][$lang['id']]['text']; ?></textarea>
+                            <textarea class='form-control ckeditor' name='lang[<?= $lang['id']; ?>][text]'><?= $page['langs'][$lang['id']]['text']; ?></textarea>
                         </td>
                     </tr>
                 </table>
@@ -59,6 +59,8 @@
 
 
     <br>
-    <input type='submit' class='btn btn-success margin-top pull-right'/>
+
+    <input type='submit' class='btn btn-success margin-top pull-right' value="Trimite"/>
+    <a href='<?= base_url(); ?>pages/cdelete/<?= $page['id']; ?>' style='margin-right: 10px;' class='btn btn-danger pull-right'>Sterge</a>
     <div class='clearfix'></div>
 </form>

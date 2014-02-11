@@ -9,6 +9,8 @@ class File_model extends CI_Model {
         parent::__construct();
     }
 
+    private $upload_path = "/upload/files/";
+
     public function type_file($file) {
         $mime = get_mime_by_extension($file);
 
@@ -33,24 +35,48 @@ class File_model extends CI_Model {
                 $type = "doc";
                 break;
             case 'application/excel':
-                $type = "doc";
+                $type = "excel";
+                break;
+            case 'audio/mp4':
+            case 'audio/mpeg':
+            case 'audio/mpg':
+            case 'audio/mpeg3':
+            case 'audio/mp3':
+                $type = "audio";
                 break;
             default:
-                $type = "unidentified";
+                $type = "{$mime}";
                 break;
         }
         return $type;
     }
 
-    public function register_file($path, $mid, $mname) {
+    public function register_file($path, $mid, $mname, $file_ext, $category = 0) {
         $type = $this->type_file($path);
 
         $this->db->insert('ci_file', array(
             'path' => $path,
             'module_id' => $mid,
             'module_name' => $mname,
-            'type' => $type
+            'type' => $type,
+            'size' => filesize($_SERVER["DOCUMENT_ROOT"] . $path)
         ));
+
+        $id = $this->db->insert_id();
+
+        $this->create_attach($type, $path, $file_ext, $id);
+    }
+
+    public function create_attach($type, $path, $file_ext, $id) {
+
+        $update = array('ord' => $id);
+
+        switch ($type) {
+            default:
+                break;
+        }
+
+        $this->db->update('ci_file', $update, array('id' => $id));
     }
 
     public function drop_file($id) {
@@ -58,26 +84,30 @@ class File_model extends CI_Model {
         if ($data) {
             $this->db->delete('ci_file', array('id' => $id));
             $full_path = $_SERVER['DOCUMENT_ROOT'] . $data['path'];
+            $thumb_path = $_SERVER['DOCUMENT_ROOT'] . $data['thumb_path'];
             if (file_exists($full_path))
                 unlink($full_path);
+            if (file_exists($thumb_path))
+                unlink($thumb_path);
             return true;
         } else {
             return false;
         }
     }
 
-    public function upload_files($mname, $mid) {
+    public function upload_files($mname, $mid, $type = 0) {
 
-        $upload_path = '/upload/files/';
+        $upload_path = $this->upload_path;
 
         $config['upload_path'] = $_SERVER['DOCUMENT_ROOT'] . $upload_path;
-        $config['allowed_types'] = 'doc|jpg|jpeg|gif|pdf|docx|xls|xlsx|png';
+        $config['allowed_types'] = 'doc|jpg|jpeg|gif|pdf|docx|xls|xlsx|png|m4a|mp4|mp3';
 
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload()) {
+            var_dump($this->upload->data());
             $json['status'] = 'error';
-            //$json['issue'] = $this->upload->display_errors('', '');
+            $json['issue'] = $this->upload->display_errors('', '');
         } else {
             $upload_arr = $this->upload->data();
             $json['status'] = 'success';
@@ -87,12 +117,40 @@ class File_model extends CI_Model {
 
             $file_path = $upload_path . $raw_name . $file_ext;
 
-            $this->register_file($file_path, $mid, $mname);
+            $this->register_file($file_path, $mid, $mname, $file_ext, $type);
         }
 
         return json_encode($json);
 
         $this->output->enable_profiler(FALSE);
+    }
+
+    public function change_category($id, $category) {
+        $this->db->update('ci_file', array(
+            'category' => $category
+                ), array(
+            'id' => $id
+        ));
+    }
+
+    public function get_files($mname = '', $mid = 0, $type = 0) {
+        $where = array();
+        if ($mname)
+            $where['module_name'] = $mname;
+        if ($mid)
+            $where['module_id'] = $mid;
+        if ($type)
+            $where['category_id'] = $type;
+
+        $data = $this->db->select("ci_file.*")
+                ->from('ci_file');
+
+        if ($where)
+            $data = $data->where($where);
+
+        $data = $data->order_by('ord', 'desc');
+
+        return $data->get()->result_array();
     }
 
 }

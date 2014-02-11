@@ -109,6 +109,9 @@ class Jqgrid_model extends CI_Model {
 
         if ($page > $total_pages)
             $page = $total_pages;
+        if ($page == 0)
+            $page = 1;
+        
         $start = $limit * $page - $limit;
 
         return $start;

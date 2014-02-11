@@ -18,14 +18,14 @@ class Articles_model extends CI_Model {
         $limit = $this->input->post('rows');
         $sord = $this->input->post('sord');
         $sidx = $this->input->post('sidx');
-        $count = $this->db->count_all('g_user');
+        $count = $this->db->count_all('ci_article');
         $start = $this->jqgrid_model->start($count, $page, $limit);
-        $list = $this->get_menu($start, $limit, $sord, $sidx);
+        $list = $this->get_articles($start, $limit, $sord, $sidx);
 
         return $this->jqgrid_model->populate($list, $count, $page, $limit);
     }
 
-    public function get_menu($start, $limit, $sord, $sidx) {
+    public function get_articles($start, $limit, $sord, $sidx) {
         $SQL = "SELECT a.id, al.title, al.text, al.uri FROM ci_article a
                 INNER JOIN ci_article_lang al ON a.`id` = al.`article_id` AND al.`lang_id` = 1
                 ORDER BY `{$sidx}` {$sord} LIMIT {$start}, {$limit}";

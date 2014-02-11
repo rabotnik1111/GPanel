@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2013 at 10:32 PM
+-- Generation Time: Feb 12, 2014 at 01:56 AM
 -- Server version: 5.5.25
 -- PHP Version: 5.3.13
 
@@ -31,14 +31,14 @@ CREATE TABLE IF NOT EXISTS `ci_article` (
   `category_id` int(11) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `ci_article`
 --
 
 INSERT INTO `ci_article` (`id`, `category_id`, `date_created`) VALUES
-(1, 4, '2013-10-09 17:44:41');
+(2, 2, '2014-02-11 21:47:34');
 
 -- --------------------------------------------------------
 
@@ -55,15 +55,15 @@ CREATE TABLE IF NOT EXISTS `ci_article_lang` (
   `uri` varchar(250) NOT NULL,
   `enabled` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `ci_article_lang`
 --
 
 INSERT INTO `ci_article_lang` (`id`, `article_id`, `lang_id`, `title`, `text`, `uri`, `enabled`) VALUES
-(1, 1, 1, 'fdfdsfsdfs 1', 'dsfsdfsdfsdf 1', 'ro-fdfdsfsdfs-1-1', 1),
-(2, 1, 2, 'sdfadsfasd 2', 'fasdfasdfdsfasd fadsaf sdf 2', 'en-sdfadsfasd-2-1', 1);
+(3, 2, 1, 'Lorem Ipsum has been the industry', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.&nbsp;</p>\r\n\r\n<div><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>\r\n\r\n<div>&nbsp;</div>\r\n\r\n<div><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>\r\n', 'ro-lorem-ipsum-has-been-the-industry-2', 1),
+(4, 2, 2, 'Lorem Ipsum has been the industry', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.&nbsp;</p>\r\n\r\n<div><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>\r\n\r\n<div>&nbsp;</div>\r\n\r\n<div><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>\r\n', 'en-lorem-ipsum-has-been-the-industry-2', 1);
 
 -- --------------------------------------------------------
 
@@ -100,23 +100,28 @@ INSERT INTO `ci_category` (`id`, `parent`, `title`, `uri`, `enabled`) VALUES
 
 CREATE TABLE IF NOT EXISTS `ci_file` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) NOT NULL,
   `path` varchar(250) NOT NULL,
   `module_id` int(11) NOT NULL,
   `module_name` varchar(100) NOT NULL,
   `type` varchar(100) NOT NULL DEFAULT 'unidentified',
+  `size` float NOT NULL,
+  `ord` int(11) NOT NULL,
   `uploaded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `ci_file`
 --
 
-INSERT INTO `ci_file` (`id`, `path`, `module_id`, `module_name`, `type`, `uploaded`) VALUES
-(20, '/upload/files/santuan.JPG', 7, 'page', 'image', '2013-10-06 17:01:00'),
-(21, '/upload/files/Capture.JPG', 9, 'page', 'image', '2013-10-06 17:03:43'),
-(22, '/upload/files/1385050_528403780575536_1335968142_n.jpg', 13, 'page', 'image', '2013-10-06 20:34:32'),
-(23, '/upload/files/Baby-Stork-with-bundle-icon.png', 1, 'page', 'image', '2013-10-09 17:45:24');
+INSERT INTO `ci_file` (`id`, `name`, `path`, `module_id`, `module_name`, `type`, `size`, `ord`, `uploaded`) VALUES
+(20, '', '/upload/files/santuan.JPG', 7, 'page', 'image', 0, 0, '2013-10-06 17:01:00'),
+(21, '', '/upload/files/Capture.JPG', 9, 'page', 'image', 0, 0, '2013-10-06 17:03:43'),
+(22, '', '/upload/files/1385050_528403780575536_1335968142_n.jpg', 13, 'page', 'image', 0, 0, '2013-10-06 20:34:32'),
+(23, 'asdfcxvxczvxcv', '/upload/files/IMG_17183.JPG', 12, 'page', 'image', 2850670, 24, '2014-02-11 21:30:20'),
+(24, 'fdsfasdf', '/upload/files/IMG_17184.JPG', 12, 'page', 'image', 2850670, 0, '2014-02-11 21:30:44'),
+(25, 'Imagine articol', '/upload/files/IMG_17151.JPG', 2, 'page', 'image', 1520140, 25, '2014-02-11 21:47:48');
 
 -- --------------------------------------------------------
 
@@ -151,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `ci_page` (
   `ord` int(11) NOT NULL,
   `enabled` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `ci_page`
@@ -166,8 +171,7 @@ INSERT INTO `ci_page` (`id`, `parent`, `ord`, `enabled`) VALUES
 (10, 6, 1, 1),
 (11, 0, 1, 1),
 (12, 8, 1, 1),
-(13, 10, 1, 1),
-(14, 10, 1, 1);
+(13, 10, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -183,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `ci_page_lang` (
   `text` text NOT NULL,
   `uri` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `ci_page_lang`
@@ -207,9 +211,62 @@ INSERT INTO `ci_page_lang` (`id`, `page_id`, `lang_id`, `title`, `text`, `uri`) 
 (21, 12, 1, 'ggdhgfhfg', '', 'ro-ggdhgfhfg-12'),
 (22, 12, 2, 'ggdhgfhfg', '', 'en-ggdhgfhfg-12'),
 (23, 13, 1, 'ffdghfdhgfh', '', 'ro-ffdghfdhgfh-13'),
-(24, 13, 2, 'ffdghfdhgfh', '', 'en-ffdghfdhgfh-13'),
-(25, 14, 1, 'rtyrtythgfhfg', '', 'ro-rtyrtythgfhfg-14'),
-(26, 14, 2, 'rtyrtythgfhfg', '', 'en-rtyrtythgfhfg-14');
+(24, 13, 2, 'ffdghfdhgfh', '', 'en-ffdghfdhgfh-13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ci_var`
+--
+
+CREATE TABLE IF NOT EXISTS `ci_var` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `ci_var`
+--
+
+INSERT INTO `ci_var` (`id`, `parent`, `name`) VALUES
+(1, 0, 'namevar'),
+(2, 0, 'dsfdsf'),
+(3, 0, 'dsfdsf'),
+(4, 0, 'dsfdsf'),
+(5, 0, 'dsfdsf'),
+(6, 0, 'dsfdsf'),
+(7, 0, 'dsfdsf'),
+(8, 0, 'dsfdsf');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ci_var_lang`
+--
+
+CREATE TABLE IF NOT EXISTS `ci_var_lang` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `var_id` int(11) NOT NULL,
+  `lang_id` int(11) NOT NULL,
+  `value` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `ci_var_lang`
+--
+
+INSERT INTO `ci_var_lang` (`id`, `var_id`, `lang_id`, `value`) VALUES
+(1, 1, 1, 'dcgvdgdfc sda dss'),
+(2, 1, 2, 'fgfdbv cx 1'),
+(3, 6, 1, 'dvfsdfdfs'),
+(4, 6, 2, 'dsfsdfsdfsvcxvc'),
+(5, 7, 1, 'dvfsdfdfs'),
+(6, 7, 2, 'dsfsdfsdfsvcxvc'),
+(7, 8, 1, 'dvfsdfdfs'),
+(8, 8, 2, 'dsfsdfsdfsvcxvc');
 
 -- --------------------------------------------------------
 
@@ -224,7 +281,7 @@ CREATE TABLE IF NOT EXISTS `g_menu` (
   `url` varchar(250) NOT NULL,
   `top` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `g_menu`
@@ -235,7 +292,8 @@ INSERT INTO `g_menu` (`id`, `name`, `icon`, `url`, `top`) VALUES
 (2, 'Pages', 'icon-file-alt', 'pages', 0),
 (3, 'Users', 'icon-user', 'users', 0),
 (4, 'Menu', 'icon-list-alt', 'menu', 0),
-(5, 'Articles', 'icon-paste', 'articles', 0);
+(5, 'Articles', 'icon-paste', 'articles', 0),
+(6, 'Vars', 'icon-font', 'vars', 0);
 
 -- --------------------------------------------------------
 
@@ -278,7 +336,7 @@ CREATE TABLE IF NOT EXISTS `g_user` (
 --
 
 INSERT INTO `g_user` (`id`, `login`, `password`, `last_login`) VALUES
-(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', '2013-10-09 18:19:06');
+(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', '2014-02-12 01:23:36');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
