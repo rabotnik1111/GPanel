@@ -7,7 +7,7 @@ class Articles extends MY_Controller {
 
     function __construct() {
         parent::__construct();
-
+        //Init
         $this->load->model('articles_model');
         $this->template->set_layout('default');
     }
